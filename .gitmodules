@@ -1,0 +1,3 @@
+[submodule "delpi"]
+	path = delpi
+	url = https://github.com/bertis-informatics/delpi.git
