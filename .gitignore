@@ -1,0 +1,24 @@
+# Python cache files
+__pycache__/
+*.pyc
+
+# PyInstaller build artifacts (Large binaries)
+build/
+dist/
+*.spec
+
+# Thermo RAW reader DLLs
+dlls/
+
+# 7-Zip engine and large compressed archives
+7z.exe
+7z.dll
+*.7z
+*.zip
+
+# Installers, executables, and setup scripts
+*.exe
+*.iss
+
+# Local settings and logs
+settings/

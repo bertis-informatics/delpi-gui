@@ -1,0 +1,69 @@
+acquisition_method: DIA
+
+input_files:
+  - /data1/MassSpecData/DIA-QE/DIA/collinsb_X1803_171-A.mzML
+  - /data1/MassSpecData/DIA-QE/DIA/collinsb_X1803_172-B.mzML
+  - /data1/MassSpecData/DIA-QE/DIA/collinsb_X1803_173-A.mzML
+  - /data1/MassSpecData/DIA-QE/DIA/collinsb_X1803_174-B.mzML
+  - /data1/MassSpecData/DIA-QE/DIA/collinsb_X1803_175-A.mzML
+  - /data1/MassSpecData/DIA-QE/DIA/collinsb_X1803_176-B.mzML
+
+fasta_file: /data1/MassSpecData/DIA-QE/DIA/target_protein_sequences.fasta
+
+output_directory: /data1/MassSpecData/DIA-QE/DIA/delpi
+output_format: parquet # tsv or parquet
+output_decoy: true
+
+database_directory: /data1/MassSpecData/DIA-QE/DIA/delpi/speclib
+
+ms1_mass_tol_in_ppm: 10
+ms2_mass_tol_in_ppm: 10
+
+q_value_cutoff: 0.01
+
+digest:
+  enzyme: trypsin
+  min_len: 7
+  max_len: 30
+  max_missed_cleavages: 1
+  n_term_methionine_excision: true
+
+modification:
+  max_mods: 2     # max number of variable modifications per peptide
+  mod_param_set:
+  - mod_name: Carbamidomethyl
+    residue: C
+    location: anywhere
+    fixed: true
+  - mod_name: Oxidation
+    residue: M
+    location: anywhere
+    fixed: false
+  - mod_name: Acetyl
+    residue: "*"
+    location: protein_n_term
+    fixed: false
+  # - mod_name: Phospho
+  #   residue: S
+  #   location: anywhere
+  #   fixed: False
+  # - mod_name: Phospho
+  #   residue: T
+  #   location: anywhere
+  #   fixed: False
+  # - mod_name: Phospho
+  #   residue: Y
+  #   location: anywhere
+  #   fixed: False            
+
+precursor:
+  min_charge: 1
+  max_charge: 4
+  min_mz: 300
+  max_mz: 1800
+
+fragment:
+  min_charge: 1
+  max_charge: 2
+  min_mz: 200
+  max_mz: 1800
