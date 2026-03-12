@@ -1,6 +1,10 @@
 import sys
 import os
 
+from PySide6.QtGui import QFont
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 # =====================================================================
 # [Required at top] Prevent multiprocessing conflicts with PyInstaller console=False
 # A dummy writer (black hole) to prevent background workers from crashing 
@@ -66,6 +70,10 @@ if __name__ == "__main__":
 
     try:
         app = QApplication(sys.argv)
+
+        global_font = QFont("Arial UI", 10)
+        app.setFont(global_font)
+
         window = ProteomicsApp()
         window.show()
         sys.exit(app.exec())

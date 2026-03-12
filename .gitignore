@@ -22,3 +22,9 @@ dlls/
 
 # Local settings and logs
 settings/
+
+legacy/
+
+delpi_gui_env/
+
+Installer/

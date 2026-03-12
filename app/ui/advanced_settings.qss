@@ -1,0 +1,72 @@
+/* advanced_settings.qss */
+
+QDialog { 
+    background-color: #F8FAFC; 
+}
+
+QGroupBox { 
+    background-color: transparent;
+    border: 1px solid #E2E8F0; 
+    border-radius: 12px; 
+    padding: 15px; 
+    margin-top: 0px; 
+}
+
+QGroupBox::title { 
+    padding: 0px;
+    margin: 0px;
+    subcontrol-origin: margin; 
+}
+
+QLabel#group_title {
+    font-size: 18px; 
+    font-weight: bold; 
+    color: #4A5568;
+    padding-bottom: 2px;
+    background: transparent;
+}
+
+QGroupBox QLabel {
+    font-size: 13px;
+    color: #475569;
+}
+
+QComboBox {
+    min-width: 90px;
+    max-width: 90px;
+    min-height: 20px; /* 높이를 22px로 제한 */
+    max-height: 20px;
+    font-size: 12px;
+    padding-left: 5px;
+}
+
+/* ========================================================
+   💡 [수정] 스핀박스와 콤보박스 높이 축소
+   ======================================================== */
+QSpinBox, QDoubleSpinBox {
+    min-width: 90px;
+    max-width: 90px;
+    min-height: 20px; /* 높이를 22px로 제한 */
+    max-height: 20px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 5px;
+    font-size: 12px; /* 높이가 낮아졌으므로 폰트도 살짝 조정 */
+    border: 1px solid #CBD5E1;
+}
+
+/* 테이블 스타일 조정 */
+QTableWidget {
+    border: 1px solid #E2E8F0;
+    border-radius: 6px;
+    gridline-color: #F1F5F9;
+}
+
+QHeaderView::section {
+    background-color: #F8FAFC;
+    font-weight: bold;
+    color: #64748B;
+    border: none;
+    border-bottom: 1px solid #E2E8F0;
+    padding: 0.5px;
+}

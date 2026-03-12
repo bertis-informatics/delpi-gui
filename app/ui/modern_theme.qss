@@ -1,0 +1,346 @@
+/* ===================================================
+   1. Global Base Styles & 둥근 윈도우 모서리 설정
+=================================================== */
+/* 💡 [주의] QWidget 전체에 배경색을 주면 둥근 모서리 밖으로 네모난 배경이 튀어나옵니다.
+   따라서 전역 설정에는 폰트와 글자색만 남깁니다. */
+QWidget { 
+    font-family: 'Segoe UI', Arial, sans-serif; 
+    color: #333333; 
+}
+
+/* 💡 진짜 메인 창 역할을 하는 centralwidget에 배경과 둥근 모서리를 줍니다. */
+#centralwidget {
+    background-color: #F4F6F9;
+    border-radius: 12px; /* 모서리 둥글게 */
+    border: 1px solid #CBD5E1; /* OS 기본 그림자가 사라지므로 얇은 테두리를 추가해 구분감 부여 */
+}
+
+QScrollArea {
+    background-color: transparent;
+    border: none; /* 스크롤 영역의 기본 테두리 제거 */
+}
+
+/* 스크롤 영역 안쪽의 실제 콘텐츠가 담기는 도화지(viewport) 투명화 */
+QScrollArea > QWidget > QWidget,
+QWidget#scrollAreaWidgetContents {
+    background-color: transparent;
+}
+
+/* ===================================================
+   Custom Title Bar (frame_titlebar)
+=================================================== */
+QFrame#frame_titlebar {
+    /* 💡 타이틀바 배경을 투명하게 하고, 위쪽 모서리 두 개만 같이 둥글게 깎습니다. */
+    background-color: transparent; 
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom: 1px solid #D1D5DB; /* 하단 선 유지 */
+}
+
+/* 💡 [해결] 타이틀바 안의 모든 라벨 배경을 투명하게 만들어 선 끊김 방지 */
+QFrame#frame_titlebar QLabel {
+    background-color: transparent;
+}
+
+QLabel#label_app_name {
+    font-size: 14px;
+    font-weight: bold;
+    color: #4A5568;
+    padding-left: 5px;
+}
+
+QLabel#label_gpu_info {
+    font-size: 13px;
+    color: #4A5568;
+    padding-right: 15px;
+}
+
+/* 닫기 버튼 디자인 */
+QPushButton#btn_close_window {
+    background-color: transparent;
+    border: none;
+    color: #A0AEC0;
+    font-size: 16px;
+    font-weight: bold;
+    min-width: 30px;
+    max-width: 30px;
+    min-height: 30px;
+    border-radius: 15px;
+}
+
+QPushButton#btn_close_window:hover {
+    background-color: #E2E8F0; 
+}
+
+/* ===================================================
+   2. Container Widgets (Group Boxes)
+=================================================== */
+QGroupBox { 
+    background-color: transparent; 
+    border: 1px solid #E0E4E8; 
+    border-radius: 10px; 
+    padding: 1px; 
+    margin-top: 0px; 
+}
+
+/* 안쓰는 기본 타이틀 공간 0으로 증발시키기 */
+QGroupBox::title { 
+    padding: 0px; 
+    margin: 0px; 
+    subcontrol-origin: margin; 
+}
+
+/* 💡 새로 추가한 라벨용 디자인 적용 */
+QLabel#title_files, QLabel#title_db, QLabel#title_output, QLabel#title_method, QLabel#title_log {
+    font-size: 18px; 
+    font-weight: bold; 
+    color: #4A5568; 
+    padding-bottom: 2px;
+    background: transparent;
+}
+
+/* 그룹박스 안의 일반 라벨 폰트 유지 */
+QGroupBox QLabel, QGroupBox QRadioButton, QGroupBox QCheckBox {
+    font-size: 13px; 
+}
+
+/* ===================================================
+   3. Input Widgets (Lines, Boxes, etc.)
+=================================================== */
+QLineEdit, QComboBox, QSpinBox, QDoubleSpinBox { 
+    background-color: #FFFFFF; 
+    border: 1px solid #CED4DA; 
+    border-radius: 4px; 
+    padding: 4px; 
+}
+
+QLineEdit:focus, QComboBox:focus, QSpinBox:focus { 
+    border: 1px solid #2C6B7F; 
+}
+
+/* ===================================================
+   4. Buttons
+=================================================== */
+/* General Button */
+QPushButton { 
+    background-color: #FFFFFF; 
+    color: #2C6B7F; 
+    border: 1px solid #2C6B7F; 
+    border-radius: 4px; 
+    padding: 6px 12px; 
+}
+
+QPushButton:hover { 
+    background-color: #EAF2F4; 
+}
+
+/* Run Search Button (Primary Action) */
+QPushButton#btn_run { 
+    background-color: #2C6B7F; 
+    color: #FFFFFF; 
+    border: none; 
+    border-radius: 6px; 
+    padding: 15px; 
+    font-weight: bold; 
+    font-size: 18px; 
+}
+
+QPushButton#btn_run:hover { 
+    background-color: #245A6A; 
+}
+
+/* ===================================================
+   5. Progress Bars
+=================================================== */
+QProgressBar { 
+    background-color: #E9ECEF; 
+    border: none; 
+    border-radius: 6px; 
+    text-align: right; 
+    color: #666666; 
+    font-weight: bold; 
+}
+
+QProgressBar::chunk { 
+    background-color: #2C6B7F; 
+    border-radius: 6px; 
+}
+
+/* ===================================================
+   6. Selection Widgets (Radio Buttons)
+=================================================== */
+QRadioButton { 
+    font-weight: bold;
+    color: #333333; 
+}
+
+/* 6-1. Database & Acquisition Mode (Standard Circle Style) */
+QRadioButton#radio_db_fasta, QRadioButton#radio_db_lib,
+QRadioButton#radio_dia, QRadioButton#radio_dda {
+    background-color: transparent;
+    color: #666666;
+    padding: 6px 20px 6px 10px; 
+    border-radius: 6px; 
+    border: 1px solid transparent; 
+}
+
+QRadioButton#radio_db_fasta, QRadioButton#radio_db_lib { min-width: 160px; }
+QRadioButton#radio_dia, QRadioButton#radio_dda { min-width: 35px; }
+
+QRadioButton#radio_db_fasta:hover:!checked, QRadioButton#radio_db_lib:hover:!checked,
+QRadioButton#radio_dia:hover:!checked, QRadioButton#radio_dda:hover:!checked {
+    background-color: #EAF2F4;
+}
+
+QRadioButton#radio_db_fasta:checked, QRadioButton#radio_db_lib:checked,
+QRadioButton#radio_dia:checked, QRadioButton#radio_dda:checked {
+    background-color: #2C6B7F;
+    color: #FFFFFF;
+}
+
+QRadioButton#radio_db_fasta::indicator, QRadioButton#radio_db_lib::indicator,
+QRadioButton#radio_dia::indicator, QRadioButton#radio_dda::indicator {
+    width: 10px;  
+    height: 10px; 
+    border-radius: 6px; 
+    border: 1px solid #B0B8C1; 
+    background-color: transparent;
+    margin-right: 6px; 
+}
+
+QRadioButton#radio_db_fasta::indicator:checked, QRadioButton#radio_db_lib::indicator:checked,
+QRadioButton#radio_dia::indicator:checked, QRadioButton#radio_dda::indicator:checked {
+    border: 3px solid #FFFFFF; 
+    background-color: #2C6B7F;
+}
+
+/* 6-2. Segmented Button (Search Preset Style - No Circle) */
+QRadioButton#radio_global, QRadioButton#radio_phospho, 
+QRadioButton#radio_ubiquitin, QRadioButton#radio_custom {
+    background-color: transparent;
+    color: #666666;
+    padding: 6px 0px; 
+    min-width: 80px; 
+    border-radius: 0px; 
+    border: 1px solid #CBD5E1;
+    margin: 0px;
+    text-align: right;
+}
+
+QRadioButton#radio_global, QRadioButton#radio_phospho, QRadioButton#radio_ubiquitin {
+    border-right: none;
+}
+
+QRadioButton#radio_global::indicator, QRadioButton#radio_phospho::indicator, 
+QRadioButton#radio_ubiquitin::indicator, QRadioButton#radio_custom::indicator {
+    width: 0px; height: 0px; border: none; background: none; image: none; margin: 0px; padding: 0px;
+}
+
+QRadioButton#radio_global:hover:!checked, QRadioButton#radio_phospho:hover:!checked, 
+QRadioButton#radio_ubiquitin:hover:!checked, QRadioButton#radio_custom:hover:!checked {
+    background-color: #EAF2F4;
+}
+
+QRadioButton#radio_global:checked, QRadioButton#radio_phospho:checked, 
+QRadioButton#radio_ubiquitin:checked, QRadioButton#radio_custom:checked {
+    background-color: #2C6B7F;
+    color: #FFFFFF;
+    border: 1px solid #2C6B7F; 
+}
+
+QRadioButton#radio_global {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+QRadioButton#radio_custom {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+/* ===================================================
+   7. List & Log Widgets
+=================================================== */
+/* File List Widget */
+QListWidget#list_files {
+    background-color: transparent; 
+    border: 1px solid #CBD5E1; 
+    border-radius: 6px;        
+    outline: none;             
+}
+
+QListWidget#list_files::item {
+    border-radius: 4px;
+    padding: 0px; 
+}
+
+QListWidget#list_files::item:hover {
+    background-color: #EAF2F4; 
+}
+
+QListWidget#list_files::item:selected {
+    background-color: #2C6B7F; 
+}
+
+/* --------------------------------------------------- */
+/* 💡 [핵심] Execution Log (text_log) - 상시 청록색 테두리 */
+/* --------------------------------------------------- */
+QTextEdit#text_log { 
+    background-color: #FFFFFF;
+    /* 상시 진한 청록색 테두리 강제 적용 */
+    border: 2px solid #38748C !important; 
+    border-radius: 4px;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 13px;
+    padding: 8px;
+    color: #333333;
+}
+
+/* 클릭 시에도 테두리 유지 */
+QTextEdit#text_log:focus {
+    border: 2px solid #38748C !important;
+}
+
+/* 스피너 레이아웃 조정 */
+QLabel#label_spinner {
+    padding-right: 2px;
+    background: transparent;
+}
+
+/* ===================================================
+   Custom Title Bar (frame_titlebar)
+=================================================== */
+QFrame#frame_titlebar {
+    background-color: #F4F6F9; /* 전체 배경과 동일하게 */
+    border-bottom: 1px solid #E0E4E8; /* 타이틀바 아래 연한 구분선 */
+}
+
+QLabel#label_app_name {
+    font-size: 14px;
+    font-weight: bold;
+    color: #4A5568;
+    padding-left: 5px;
+}
+
+QLabel#label_gpu_info {
+    font-size: 13px;
+    color: #4A5568;
+    padding-right: 15px;
+}
+
+/* 불러오기 버튼들의 테두리를 옆 텍스트 입력창과 동일한 회색으로 변경 */
+QPushButton#btn_browse_fasta, 
+QPushButton#btn_browse_db, 
+QPushButton#btn_browse_output {
+    background-color: #FFFFFF;
+    border: 1px solid #CED4DA; /* 텍스트 입력창과 동일한 회색 테두리 */
+    border-radius: 4px;
+}
+
+/* 마우스 호버 시 테두리를 살짝 더 선명하게 (선택 사항) */
+QPushButton#btn_browse_fasta:hover, 
+QPushButton#btn_browse_db:hover, 
+QPushButton#btn_browse_output:hover {
+    border: 1px solid #A0AEC0; /* 호버 시 약간 더 진한 회색 */
+    background-color: #F8FAFC;
+}
+
